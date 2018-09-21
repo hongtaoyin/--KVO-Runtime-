@@ -27,7 +27,7 @@
 //    [person RUNTIME_addObserver:self];
     
     // 改用runtime消息转发机制实现实例化
-    _person = objc_msgSend([Person class], @selector(alloc));
+    _person = objc_msgSend(objc_msgSend([Person class], @selector(alloc)), @selector(init));
     objc_msgSend(_person, @selector(RUNTIME_addObserver:),self);
     
 }
