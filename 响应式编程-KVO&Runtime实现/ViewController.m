@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "Person.h"
 #import "NSObject+RUNTIME_KOV.h"
+#import <objc/message.h>
 
 @interface ViewController ()
 
@@ -21,9 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    Person *person = [[Person alloc] init];
-    _person = person;
-    [person RUNTIME_addObserver:self];
+//    Person *person = [[Person alloc] init];
+//    _person = person;
+//    [person RUNTIME_addObserver:self];
+    
+    // 改用runtime消息转发机制实现实例化
+    _person = objc_msgSend([Person class], @selector(alloc));
+    objc_msgSend(_person, @selector(RUNTIME_addObserver:),self);
     
 }
 
