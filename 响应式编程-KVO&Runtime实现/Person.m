@@ -14,4 +14,9 @@
     _name = ([NSString stringWithFormat:@"监测到name赋值,%@",name]);
 }
 
++ (BOOL)resolveClassMethod:(SEL)sel {
+    
+    return YES;
+}
+
 @end
