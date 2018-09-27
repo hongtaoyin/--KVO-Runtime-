@@ -29,23 +29,6 @@
 
 }
 
-//- (void)RUNTIME_addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context {
-//    // 创建动态类
-//    NSString *oldClassName = NSStringFromClass([self class]);
-//    NSString *newName = [NSString stringWithFormat:@"RUNTIME_KVO_%@",oldClassName];
-//    const char *newClassName = [newName UTF8String];
-//    Class RUNTIMEClass = objc_allocateClassPair([self class], newClassName, 0);
-//    class_addMethod(RUNTIMEClass, @selector(setName:), (IMP)setName, "v@:@");
-//
-//    // 注册
-//    objc_registerClassPair(RUNTIMEClass);
-//    // 指向
-//    object_setClass(self, RUNTIMEClass);
-//    // 绑定
-//    objc_setAssociatedObject(self, (__bridge const void *)@"123", observer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-//
-//}
-
 // 注意使用消息转发机制的时候需要在Xcode配置中将检测机制关闭。坑啊，很多作者在发送runtime实现KVO功能的时候默认大家已经会使用runtime类库了就没有标注说明
 void setName(id self,SEL _cmd,NSString * newName){
     

@@ -27,8 +27,16 @@
 //    [person RUNTIME_addObserver:self];
     
     // 改用runtime消息转发机制实现实例化
-    _person = objc_msgSend(objc_msgSend([Person class], @selector(alloc)), @selector(init));
+    Person *person = objc_msgSend(objc_msgSend([Person class], @selector(alloc)), @selector(init));
+    _person = person;
     objc_msgSend(_person, @selector(RUNTIME_addObserver:),self);
+    
+    UIImageView *imageView = objc_msgSend(objc_msgSend([UIImageView class], @selector(alloc)), @selector(init));
+    objc_msgSend(imageView, @selector(setBackgroundColor:),objc_msgSend([UIColor class], @selector(redColor)));
+    objc_msgSend(imageView, @selector(setFrame:), CGRectMake(0, 0, 100, 100));
+    objc_msgSend(objc_msgSend(self, @selector(view)), @selector(addSubview:), imageView);
+    
+    person.sleepNow.workNow.eat(@"面包");// 链式函数式编程
     
 }
 

@@ -19,4 +19,21 @@
     return YES;
 }
 
+- (Person *(^)(NSString *))eat {
+    return ^(NSString *str) {
+        NSLog(@"吃了%@",str);
+        return self;
+    };
+}
+
+- (Person *)workNow {
+    NSLog(@"工作了");
+    return self;
+}
+
+- (Person *)sleepNow {
+    NSLog(@"睡觉了");
+    return self;
+}
+
 @end

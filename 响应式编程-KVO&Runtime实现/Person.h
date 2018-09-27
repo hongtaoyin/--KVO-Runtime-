@@ -10,6 +10,10 @@
 
 @interface Person : NSObject
 
-@property (nonatomic,copy)NSString *name;
+@property (nonatomic,copy) NSString *name;
+
+- (Person *(^)(NSString *))eat;
+- (Person *)workNow;
+- (Person *)sleepNow;
 
 @end
